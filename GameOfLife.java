@@ -7,6 +7,7 @@ public class GameOfLife implements Board {
 
     public GameOfLife(int x, int y)
     {
+        int board[][] = new int[y][x];
         // Construct a 2d array of the given x and y size.
     }
 

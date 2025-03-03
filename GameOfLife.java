@@ -7,7 +7,7 @@ public class GameOfLife implements Board {
 
     public GameOfLife(int x, int y)
     {
-        int board[][] = new int[y][x];
+        board = new int[x][y];
         // Construct a 2d array of the given x and y size.
     }
 
@@ -21,15 +21,29 @@ public class GameOfLife implements Board {
     }
 
     // Run the simulation for a number of turns
+    // returns nothing
     public void run(int turns) {
         // call step the number of times requested
+        for (int i = 0; i < turns; i++) {
+            step();
+        }
     }
 
     // Step the simulation forward one turn.
+    // Also returns nothing
     public void step()
     {
         print();
         // Update the game board, store a 1 if the cell is alive and a 0 otherwise.
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                if (countNeighbors(i, j) == 2 || countNeighbors(i, j) == 3) {
+                    board[i][j] = 1;
+                } else {
+                    board[i][j] = 0;
+                }
+            }
+        }
     }
 
 
@@ -37,6 +51,7 @@ public class GameOfLife implements Board {
         int count = 0;
         // count the number of neighbors the cell has
         // use the get(x,y) method to read any board state you need.
+        count += get(x, y + 1) + get(x + 1, y) + get(x-1, y) + get(x, y-1);
         return count;
     }
 

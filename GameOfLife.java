@@ -35,7 +35,7 @@ public class GameOfLife implements Board {
     {
         print();
         // Update the game board, store a 1 if the cell is alive and a 0 otherwise.
-        /* for (int i = 0; i < board.length; i++) {
+        for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[i].length; j++) {
                 if (countNeighbors(i, j) == 3) {
                     board[i][j] = 1;
@@ -43,7 +43,7 @@ public class GameOfLife implements Board {
                     board[i][j] = 0;
                 }
             }
-        } */
+        }
     }
 
 
@@ -51,7 +51,10 @@ public class GameOfLife implements Board {
         int count = 0;
         // count the number of neighbors the cell has
         // use the get(x,y) method to read any board state you need.
-        count += get(x, y + 1) + get(x + 1, y) + get(x-1, y) + get(x, y-1);
+        //count += get(x, y + 1) + get(x + 1, y) + get(x-1, y) + get(x, y-1);
+        count += get(x - 1, y + 1) + get(x, y + 1) + get(x + 1, y + 1);
+        count += get(x - 1, y) + get(x + 1, y);
+        count += get(x - 1, y - 1) + get(x, y - 1) + get(x + 1, y - 1);
         return count;
     }
 
